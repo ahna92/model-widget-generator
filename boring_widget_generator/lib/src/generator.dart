@@ -19,19 +19,20 @@ class BoringWidgetGenerator extends GeneratorForAnnotation<BoringWidget> {
     element.visitChildren(visitor);
     final sourceBuilder = StringBuffer();
     // Class name
-    sourceBuilder.writeln("class ${visitor.className}Widget extends StatelessWidget{");
+    sourceBuilder.writeln(
+        "class ${visitor.className.getDisplayString(withNullability: false)}Widget extends StatelessWidget{");
 
     // Constructor
-    sourceBuilder.write("${visitor.className}Widget (");
+    sourceBuilder.write("${visitor.className.getDisplayString(withNullability: false)}Widget (");
 
     final parametersBuilder = StringBuffer();
     for (String parameterName in visitor.fields.keys) {
-      parametersBuilder.write("this.$parameterName,"); 
+      parametersBuilder.write("this.$parameterName,");
     }
     sourceBuilder.write(parametersBuilder);
     sourceBuilder.writeln(");");
     for (String propertyName in visitor.fields.keys){
-      sourceBuilder.writeln("final ${visitor.fields[propertyName]} $propertyName;");
+      sourceBuilder.writeln("final ${visitor.fields[propertyName].getDisplayString(withNullability: false)} $propertyName;");
     }
 
     sourceBuilder.writeln("@override");
@@ -46,7 +47,7 @@ class BoringWidgetGenerator extends GeneratorForAnnotation<BoringWidget> {
     sourceBuilder.writeln("),);");
     sourceBuilder.writeln("}");
 
-    return sourceBuilder.toString();
+    return  sourceBuilder.toString() ;
   }
 }
 

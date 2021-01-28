@@ -1,7 +1,7 @@
 import 'package:boring_widget/boring_widget.dart';
 import 'package:flutter/material.dart';
 
-part 'event.g.dart'; 
+part 'event.g.dart';
 
 @widget
 class Event {
